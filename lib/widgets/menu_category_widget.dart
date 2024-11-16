@@ -39,7 +39,25 @@ class MenuCategoryWidget extends StatelessWidget {
                 children: [
                   informativeItemText(items[index]),
                   const Spacer(),
-                  Image.asset(items[index].image)
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 2,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        items[index].image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
                 ],
               ),
             );

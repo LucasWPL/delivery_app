@@ -9,13 +9,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'App de Delivery',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'LemonMilk',
       ),
+      initialBinding: GeneralBinding(),
       home: const HomePage(),
     );
   }
