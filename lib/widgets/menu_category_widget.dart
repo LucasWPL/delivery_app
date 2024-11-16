@@ -13,6 +13,7 @@ class MenuCategoryWidget extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         int crossAxisCount = constraints.maxWidth > 600 ? 2 : 1;
+        double childAspectRatio = constraints.maxWidth > 600 ? 6 : 3.5;
 
         return GridView.builder(
           shrinkWrap: true,
@@ -21,7 +22,7 @@ class MenuCategoryWidget extends StatelessWidget {
             crossAxisCount: crossAxisCount,
             mainAxisSpacing: 15,
             crossAxisSpacing: 15,
-            childAspectRatio: 6,
+            childAspectRatio: childAspectRatio,
           ),
           itemCount: items.length,
           itemBuilder: (context, index) {
@@ -38,7 +39,7 @@ class MenuCategoryWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   informativeItemText(items[index]),
-                  const Spacer(),
+                  const SizedBox(width: 8),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
@@ -46,7 +47,7 @@ class MenuCategoryWidget extends StatelessWidget {
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
                           blurRadius: 2,
-                          offset: Offset(0, 4),
+                          offset: const Offset(0, 4),
                         ),
                       ],
                     ),
@@ -68,19 +69,26 @@ class MenuCategoryWidget extends StatelessWidget {
   }
 
   Widget informativeItemText(MenuItem item) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          item.title.toUpperCase(),
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(item.description),
-        Text(
-          item.price.toCurrency(),
-          style: const TextStyle(fontWeight: FontWeight.w600),
-        ),
-      ],
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            item.title.toUpperCase(),
+            softWrap: true,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          Text(
+            item.description,
+            softWrap: true,
+          ),
+          Text(
+            item.price.toCurrency(),
+            softWrap: true,
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
     );
   }
 }

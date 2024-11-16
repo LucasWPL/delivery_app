@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                 height: 40,
                 fit: BoxFit.cover,
               ),
-            ).paddingOnly(left: 80),
+            ),
             const SizedBox(width: 10),
             const Text(
               'Lá em casa delivery',

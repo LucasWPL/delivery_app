@@ -12,14 +12,14 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     final CategoryController categoryController = Get.find();
 
-    // Garantir que as categorias sejam carregadas quando a página for inicializada
     if (categoryController.categories.isEmpty) {
       categoryController.fetchCategories();
     }
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+        padding: EdgeInsets.symmetric(
+            horizontal: ScreenHelper(context).widthPercentage(5), vertical: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

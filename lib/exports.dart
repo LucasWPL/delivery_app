@@ -5,6 +5,9 @@ export 'package:get/get.dart' hide Response, FormData, MultipartFile;
 export 'package:dio/dio.dart';
 export 'package:json_annotation/json_annotation.dart';
 
+// helpers
+export 'package:delivery_app/helpers/screen_helper.dart';
+
 // bindings
 export 'package:delivery_app/bindings/general_binding.dart';
 
