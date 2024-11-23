@@ -26,42 +26,45 @@ class MenuCategoryWidget extends StatelessWidget {
           ),
           itemCount: items.length,
           itemBuilder: (context, index) {
-            return Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 0.2,
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  informativeItemText(items[index]),
-                  const SizedBox(width: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 2,
-                          offset: const Offset(0, 4),
+            return GestureDetector(
+                onTap: () async =>
+                    Get.to(() => MenuItemDetailPage(item: items[index])),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 0.2,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      informativeItemText(items[index]),
+                      const SizedBox(width: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 2,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        items[index].image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            );
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            items[index].image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ));
           },
         );
       },

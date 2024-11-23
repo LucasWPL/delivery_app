@@ -24,6 +24,7 @@ export 'package:delivery_app/repositories/category_repository.dart';
 
 // widgets
 export 'package:delivery_app/widgets/menu_category_widget.dart';
+export 'package:delivery_app/pages/menu_item_detail_page.dart';
 
 // models
 export 'package:delivery_app/models/menu_item.dart';
