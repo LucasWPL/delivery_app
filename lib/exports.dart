@@ -38,3 +38,6 @@ export 'package:delivery_app/models/category.dart';
 // extensions
 export 'package:delivery_app/extensions/currency_extension.dart';
 export 'package:delivery_app/extensions/custom_text_extension.dart';
+
+// tokens
+export 'package:delivery_app/tokens/brand_colors.dart';

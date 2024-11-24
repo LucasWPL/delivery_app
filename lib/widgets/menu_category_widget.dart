@@ -41,8 +41,6 @@ class MenuCategoryWidget extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      informativeItemText(items[index]),
-                      const SizedBox(width: 8),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -61,7 +59,9 @@ class MenuCategoryWidget extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                      )
+                      ),
+                      const SizedBox(width: 16),
+                      informativeItemText(items[index]),
                     ],
                   ),
                 ));
@@ -79,17 +79,14 @@ class MenuCategoryWidget extends StatelessWidget {
           Text(
             item.title.toUpperCase(),
             softWrap: true,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
+            maxLines: 2,
+          ).w500s14,
           Text(
             item.description,
             softWrap: true,
-          ),
-          Text(
-            item.price.toCurrency(),
-            softWrap: true,
-            style: const TextStyle(fontWeight: FontWeight.w600),
-          ),
+            maxLines: 2,
+          ).w400s12,
+          Text(item.price.toCurrency()).w600s14,
         ],
       ),
     );

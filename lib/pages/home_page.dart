@@ -19,32 +19,37 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: BrandColors.primaryColor,
         automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            ClipOval(
-              child: Image.asset(
-                'images/logo.png',
-                width: 40,
-                height: 40,
-                fit: BoxFit.cover,
+        title: Padding(
+          padding:
+              EdgeInsets.only(left: ScreenHelper(context).widthPercentage(9)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ClipOval(
+                child: Image.asset(
+                  'images/logo.png',
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              'Lá em casa delivery',
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
+              const SizedBox(width: 10),
+              const Text(
+                'Lá em casa delivery',
+                style: TextStyle(color: Colors.white),
+              ).w600s18,
+            ],
+          ),
         ),
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.green,
+        backgroundColor: BrandColors.generalBackgroundColor,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: BrandColors.primaryColor,
+        unselectedItemColor: BrandColors.primaryColor,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {

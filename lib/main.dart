@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App de Delivery',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: BrandColors.generalBackgroundColor,
         fontFamily: 'LemonMilk',
       ),
       initialBinding: GeneralBinding(),

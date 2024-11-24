@@ -12,6 +12,8 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width <= 600;
+
     if (categoryController.categories.isEmpty) {
       categoryController.fetchCategories();
     }
@@ -19,29 +21,39 @@ class _MenuPageState extends State<MenuPage> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: ScreenHelper(context).widthPercentage(5), vertical: 20),
+            horizontal:
+                ScreenHelper(context).widthPercentage(isMobile ? 5 : 10),
+            vertical: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Abre hoje às 17h30 - Sem pedido mínimo',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 12,
-              ),
-            ),
-            SizedBox(
-              height: 2,
-              child: Container(
-                color: Colors.green,
-              ),
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const Text(
+                      'Loja aberta',
+                      style: TextStyle(color: Colors.white),
+                    ).w500s16,
+                  ),
+                ),
+                const Icon(Icons.access_time_outlined)
+                    .paddingOnly(left: 10, right: 5),
+                const Text('Das 09:00 às 18:00').w500s14,
+              ],
             ),
             Expanded(
               child: Obx(() {
                 if (categoryController.isLoading.value) {
                   return const Center(
-                      child: CircularProgressIndicator(color: Colors.green));
+                      child: CircularProgressIndicator(
+                          color: BrandColors.primaryColor));
                 }
 
                 return ListView.builder(
@@ -54,13 +66,14 @@ class _MenuPageState extends State<MenuPage> {
                         Text(
                           category.name,
                           style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w500,
                           ),
-                        ).paddingOnly(top: 20, bottom: 10),
-                        MenuCategoryWidget(items: category.items),
+                        ).paddingOnly(top: 20),
+                        MenuCategoryWidget(items: category.items)
+                            .paddingOnly(top: 8),
                       ],
-                    );
+                    ).paddingOnly(bottom: 15);
                   },
                 );
               }),
