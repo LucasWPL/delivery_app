@@ -8,5 +8,9 @@ class GeneralBinding extends Bindings {
     Get.put(CategoryRepository(dio: Get.find()));
 
     Get.put(CategoryController(categoryRepository: Get.find()));
+
+    Get.put(ItemRepository(dio: Get.find()));
+
+    Get.put(ItemController(itemRepository: Get.find()));
   }
 }

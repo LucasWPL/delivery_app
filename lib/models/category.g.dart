@@ -9,7 +9,7 @@ part of 'category.dart';
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       name: json['name'] as String,
       items: (json['items'] as List<dynamic>)
-          .map((e) => MenuItem.fromJson(e as Map<String, dynamic>))
+          .map((e) => Item.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

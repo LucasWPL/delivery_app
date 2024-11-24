@@ -1,24 +1,31 @@
 import 'package:delivery_app/exports.dart';
 
-class MenuItemDetailPage extends StatefulWidget {
-  final MenuItem item;
+class ItemDetailPage extends StatefulWidget {
+  final Item item;
 
-  const MenuItemDetailPage({required this.item});
+  const ItemDetailPage({required this.item});
 
   @override
-  State<MenuItemDetailPage> createState() => _MenuItemDetailPageState();
+  State<ItemDetailPage> createState() => _ItemDetailPageState();
 }
 
-class _MenuItemDetailPageState extends State<MenuItemDetailPage> {
+class _ItemDetailPageState extends State<ItemDetailPage> {
+  final ItemController itemController = Get.find();
   int _quantity = 1;
+
+  @override
+  void initState() {
+    super.initState();
+
+    itemController.getDetails();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detalhes do produto'),
-        shadowColor: Colors.grey,
-        elevation: 1,
+        surfaceTintColor: Colors.green,
       ),
       body: Center(
         child: SizedBox(
@@ -30,6 +37,7 @@ class _MenuItemDetailPageState extends State<MenuItemDetailPage> {
                   child: Column(
                     children: [
                       _imageAndInformativeMessage(),
+                      _addons(),
                       _observations(),
                     ],
                   ),
@@ -41,6 +49,48 @@ class _MenuItemDetailPageState extends State<MenuItemDetailPage> {
         ),
       ),
     );
+  }
+
+  Obx _addons() {
+    return Obx(() {
+      return ListView.builder(
+        shrinkWrap: true,
+        itemCount: itemController.itemDetail.value.addons.length,
+        itemBuilder: (context, index) {
+          ItemAddon addon = itemController.itemDetail.value.addons[index];
+          return DetailSectionWidget(title: addon.description, fields: [
+            ...addon.details.map((detail) {
+              bool isSelected = true;
+              return CheckboxListTile(
+                title: Text(detail.title).w500s12,
+                subtitle:
+                    Text("${detail.description} (${detail.price.toCurrency()})")
+                        .w400s10,
+                value: isSelected,
+                onChanged: (bool? value) {
+                  isSelected = value!;
+                },
+              );
+            })
+          ]);
+        },
+      );
+    });
+  }
+
+  Widget _observations() {
+    return const DetailSectionWidget(title: 'Observações', fields: [
+      TextField(
+        maxLines: 4,
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'Ex.: remover ovo, alface, etc.',
+            hintStyle: TextStyle(
+              color: Colors.grey,
+              fontSize: 12,
+            )),
+      )
+    ]);
   }
 
   Widget _bottomButtons(context) {
@@ -65,7 +115,8 @@ class _MenuItemDetailPageState extends State<MenuItemDetailPage> {
                 child: const Text('-', style: TextStyle(color: Colors.green)),
               ),
               const SizedBox(width: 10),
-              Text(_quantity.toString(), style: TextStyle(color: Colors.black)),
+              Text(_quantity.toString(),
+                  style: const TextStyle(color: Colors.black)),
               const SizedBox(width: 10),
               TextButton(
                 onPressed: () {
@@ -97,40 +148,6 @@ class _MenuItemDetailPageState extends State<MenuItemDetailPage> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _observations() {
-    return Column(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          height: 45,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.shade300,
-              borderRadius: const BorderRadius.all(Radius.circular(4)),
-            ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: const Text('Observações',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold))
-                  .paddingOnly(left: 10),
-            ),
-          ),
-        ),
-        const TextField(
-          maxLines: 4,
-          decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Ex.: remover ovo, alface, etc.',
-              hintStyle: TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
-              )),
-        ).paddingOnly(top: 10),
-      ],
     );
   }
 

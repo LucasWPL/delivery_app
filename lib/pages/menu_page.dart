@@ -8,10 +8,10 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
+  final CategoryController categoryController = Get.find();
+  
   @override
   Widget build(BuildContext context) {
-    final CategoryController categoryController = Get.find();
-
     if (categoryController.categories.isEmpty) {
       categoryController.fetchCategories();
     }

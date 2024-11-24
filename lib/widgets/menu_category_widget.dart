@@ -1,7 +1,7 @@
 import 'package:delivery_app/exports.dart';
 
 class MenuCategoryWidget extends StatelessWidget {
-  final List<MenuItem> items;
+  final List<Item> items;
 
   const MenuCategoryWidget({
     super.key,
@@ -28,7 +28,7 @@ class MenuCategoryWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
                 onTap: () async =>
-                    Get.to(() => MenuItemDetailPage(item: items[index])),
+                    Get.to(() => ItemDetailPage(item: items[index])),
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -71,7 +71,7 @@ class MenuCategoryWidget extends StatelessWidget {
     );
   }
 
-  Widget informativeItemText(MenuItem item) {
+  Widget informativeItemText(Item item) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
