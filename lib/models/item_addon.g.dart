@@ -20,6 +20,7 @@ Map<String, dynamic> _$ItemAddonToJson(ItemAddon instance) => <String, dynamic>{
 
 ItemAddonDetail _$ItemAddonDetailFromJson(Map<String, dynamic> json) =>
     ItemAddonDetail(
+      internalId: json['internalId'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
       price: (json['price'] as num).toDouble(),
@@ -27,6 +28,7 @@ ItemAddonDetail _$ItemAddonDetailFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ItemAddonDetailToJson(ItemAddonDetail instance) =>
     <String, dynamic>{
+      'internalId': instance.internalId,
       'title': instance.title,
       'description': instance.description,
       'price': instance.price,

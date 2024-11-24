@@ -9,7 +9,7 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   final CategoryController categoryController = Get.find();
-  
+
   @override
   Widget build(BuildContext context) {
     if (categoryController.categories.isEmpty) {
@@ -40,7 +40,8 @@ class _MenuPageState extends State<MenuPage> {
             Expanded(
               child: Obx(() {
                 if (categoryController.isLoading.value) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                      child: CircularProgressIndicator(color: Colors.green));
                 }
 
                 return ListView.builder(

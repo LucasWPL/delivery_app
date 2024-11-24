@@ -17,6 +17,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
   void initState() {
     super.initState();
 
+    itemController.currentItem = widget.item;
     itemController.getDetails();
   }
 
@@ -53,6 +54,10 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
 
   Obx _addons() {
     return Obx(() {
+      if (itemController.isLoading.value) {
+        return const LinearProgressIndicator(minHeight: 2, color: Colors.green);
+      }
+
       return ListView.builder(
         shrinkWrap: true,
         itemCount: itemController.itemDetail.value.addons.length,
@@ -60,15 +65,25 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
           ItemAddon addon = itemController.itemDetail.value.addons[index];
           return DetailSectionWidget(title: addon.description, fields: [
             ...addon.details.map((detail) {
-              bool isSelected = true;
               return CheckboxListTile(
                 title: Text(detail.title).w500s12,
                 subtitle:
                     Text("${detail.description} (${detail.price.toCurrency()})")
                         .w400s10,
-                value: isSelected,
-                onChanged: (bool? value) {
-                  isSelected = value!;
+                value: itemController.selectedAddons
+                    .any((element) => element.internalId == detail.internalId),
+                onChanged: (bool? isSelected) {
+                  if (isSelected!) {
+                    setState(() {
+                      itemController.selectedAddons.add(detail);
+                    });
+                    return;
+                  }
+
+                  setState(() {
+                    itemController.selectedAddons.removeWhere(
+                        (element) => element.internalId == detail.internalId);
+                  });
                 },
               );
             })
