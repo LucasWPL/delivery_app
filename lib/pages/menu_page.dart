@@ -62,10 +62,10 @@ class _MenuPageState extends State<MenuPage> {
 
                 return CustomScrollView(
                   slivers: [
-                    const SliverToBoxAdapter(
+                    SliverToBoxAdapter(
                       child: SizedBox(
-                        height: 150,
-                        child: FirebaseGeneralImageWidget(
+                        height: isMobile ? 200 : 300,
+                        child: const FirebaseGeneralImageWidget(
                           fileName: 'images/banner.jpg',
                         ),
                       ),
