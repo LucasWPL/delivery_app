@@ -52,12 +52,9 @@ class MenuCategoryWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            items[index].image,
-                            fit: BoxFit.cover,
-                          ),
+                        child: FirebaseGeneralImageWidget(
+                          fileName: items[index].image,
+                          height: 110,
                         ),
                       ),
                       const SizedBox(width: 16),

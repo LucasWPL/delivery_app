@@ -27,14 +27,7 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              ClipOval(
-                child: Image.asset(
-                  'images/logo.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.cover,
-                ),
-              ),
+              const FirebaseCircularImage(fileName: 'images/logo.png'),
               const SizedBox(width: 10),
               const Text(
                 'Lá em casa delivery',

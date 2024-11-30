@@ -181,13 +181,9 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
     bool isMobile = MediaQuery.of(context).size.width <= 600;
 
     var children = [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Image.asset(
-          width: isMobile ? double.infinity : 200,
-          widget.item.image,
-          fit: BoxFit.cover,
-        ),
+      FirebaseGeneralImageWidget(
+        fileName: widget.item.image,
+        width: isMobile ? double.infinity : 200,
       ).paddingSymmetric(horizontal: 40, vertical: 20),
       Column(
         crossAxisAlignment:

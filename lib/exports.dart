@@ -1,5 +1,10 @@
 export 'package:flutter/material.dart';
 
+// firebase
+export 'package:firebase_storage/firebase_storage.dart';
+export 'package:firebase_core/firebase_core.dart';
+
+
 // general
 export 'package:get/get.dart' hide Response, FormData, MultipartFile;
 export 'package:dio/dio.dart';
@@ -7,6 +12,7 @@ export 'package:json_annotation/json_annotation.dart';
 
 // helpers
 export 'package:delivery_app/helpers/screen_helper.dart';
+export 'package:delivery_app/helpers/firebase_helper.dart';
 
 // bindings
 export 'package:delivery_app/bindings/general_binding.dart';
@@ -28,6 +34,8 @@ export 'package:delivery_app/repositories/item_repository.dart';
 // widgets
 export 'package:delivery_app/widgets/menu_category_widget.dart';
 export 'package:delivery_app/widgets/detail_section_widget.dart';
+export 'package:delivery_app/widgets/firebase/firebase_circular_image_widget.dart';
+export 'package:delivery_app/widgets/firebase/firebase_general_image_widget.dart';
 
 // models
 export 'package:delivery_app/models/item.dart';
