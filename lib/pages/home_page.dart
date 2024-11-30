@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const FirebaseCircularImage(fileName: 'images/logo.png'),
+              const FirebaseCircularImage(fileName: 'images/logo.webp'),
               const SizedBox(width: 10),
               const Text(
                 'Lá em casa delivery',

@@ -66,7 +66,7 @@ class _MenuPageState extends State<MenuPage> {
                       child: SizedBox(
                         height: isMobile ? 200 : 300,
                         child: const FirebaseGeneralImageWidget(
-                          fileName: 'images/banner.jpg',
+                          fileName: 'images/banner.webp',
                         ),
                       ),
                     ),
