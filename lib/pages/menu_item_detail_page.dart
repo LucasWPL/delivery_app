@@ -67,6 +67,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
       }
 
       return ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: itemController.itemDetail.value.addons.length,
         itemBuilder: (context, index) {

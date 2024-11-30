@@ -48,6 +48,10 @@ class _MenuPageState extends State<MenuPage> {
                 const Text('Das 09:00 às 18:00').w500s14,
               ],
             ),
+            SizedBox(
+                    height: 1,
+                    child: Container(color: BrandColors.primaryColor))
+                .paddingOnly(top: 2, bottom: 5),
             Expanded(
               child: Obx(() {
                 if (categoryController.isLoading.value) {
@@ -56,25 +60,39 @@ class _MenuPageState extends State<MenuPage> {
                           color: BrandColors.primaryColor));
                 }
 
-                return ListView.builder(
-                  itemCount: categoryController.categories.length,
-                  itemBuilder: (context, index) {
-                    final category = categoryController.categories[index];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          category.name,
-                          style: const TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ).paddingOnly(top: 20),
-                        MenuCategoryWidget(items: category.items)
-                            .paddingOnly(top: 8),
-                      ],
-                    ).paddingOnly(bottom: 15);
-                  },
+                return CustomScrollView(
+                  slivers: [
+                    const SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 150,
+                        child: FirebaseGeneralImageWidget(
+                          fileName: 'images/banner.jpg',
+                        ),
+                      ),
+                    ),
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          final category = categoryController.categories[index];
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                category.name,
+                                style: const TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ).paddingOnly(top: 20),
+                              MenuCategoryWidget(items: category.items)
+                                  .paddingOnly(top: 8),
+                            ],
+                          ).paddingOnly(bottom: 15);
+                        },
+                        childCount: categoryController.categories.length,
+                      ),
+                    ),
+                  ],
                 );
               }),
             ),
