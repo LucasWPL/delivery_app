@@ -64,9 +64,13 @@ class _MenuPageState extends State<MenuPage> {
                   slivers: [
                     SliverToBoxAdapter(
                       child: SizedBox(
-                        height: isMobile ? 200 : 300,
-                        child: const FirebaseGeneralImageWidget(
-                          fileName: 'images/banner.webp',
+                        width: double.infinity,
+                        child: AspectRatio(
+                          aspectRatio: isMobile ? (16 / 9) : (16 / 3),
+                          child: Image.asset(
+                            'banners/banner.webp',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),

@@ -182,8 +182,8 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
     bool isMobile = MediaQuery.of(context).size.width <= 600;
 
     var children = [
-      FirebaseGeneralImageWidget(
-        fileName: widget.item.image,
+      Image.asset(
+        widget.item.image,
         width: isMobile ? double.infinity : 200,
       ).paddingSymmetric(horizontal: 40, vertical: 20),
       Column(

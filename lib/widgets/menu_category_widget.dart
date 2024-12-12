@@ -52,8 +52,8 @@ class MenuCategoryWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: FirebaseGeneralImageWidget(
-                          fileName: items[index].image,
+                        child: Image.asset(
+                          items[index].image,
                           height: 110,
                         ),
                       ),
