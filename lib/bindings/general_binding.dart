@@ -12,5 +12,7 @@ class GeneralBinding extends Bindings {
     Get.put(ItemRepository(dio: Get.find()));
 
     Get.put(ItemController(itemRepository: Get.find()));
+
+    Get.put(CartController(), permanent: true);
   }
 }

@@ -51,13 +51,15 @@ class _MenuPageState extends State<MenuPage> {
             SizedBox(
                     height: 1,
                     child: Container(color: BrandColors.primaryColor))
-                .paddingOnly(top: 2, bottom: 5),
+                .paddingOnly(bottom: 5),
             Expanded(
               child: Obx(() {
                 if (categoryController.isLoading.value) {
                   return const Center(
-                      child: CircularProgressIndicator(
-                          color: BrandColors.primaryColor));
+                    child: CircularProgressIndicator(
+                      color: BrandColors.primaryColor,
+                    ),
+                  );
                 }
 
                 return CustomScrollView(

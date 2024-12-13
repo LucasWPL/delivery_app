@@ -26,6 +26,7 @@ export 'package:delivery_app/pages/menu_item_detail_page.dart';
 // controllers
 export 'package:delivery_app/controllers/category_controller.dart';
 export 'package:delivery_app/controllers/item_controller.dart';
+export 'package:delivery_app/controllers/cart_controller.dart';
 
 // repositories
 export 'package:delivery_app/repositories/category_repository.dart';
@@ -42,6 +43,7 @@ export 'package:delivery_app/models/item.dart';
 export 'package:delivery_app/models/item_detail.dart';
 export 'package:delivery_app/models/item_addon.dart';
 export 'package:delivery_app/models/category.dart';
+export 'package:delivery_app/models/cart_item.dart';
 
 // extensions
 export 'package:delivery_app/extensions/currency_extension.dart';

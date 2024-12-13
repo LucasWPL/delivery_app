@@ -10,14 +10,19 @@ class ItemDetailPage extends StatefulWidget {
 }
 
 class _ItemDetailPageState extends State<ItemDetailPage> {
+  final CartController cartController = Get.find();
   final ItemController itemController = Get.find();
+
   int _quantity = 1;
+  String _observation = '';
 
   @override
   void initState() {
     super.initState();
 
     itemController.currentItem = widget.item;
+    itemController.selectedAddons = [];
+
     itemController.getDetails();
   }
 
@@ -102,10 +107,11 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
   }
 
   Widget _observations() {
-    return const DetailSectionWidget(title: 'Observações', fields: [
+    return DetailSectionWidget(title: 'Observações', fields: [
       TextField(
+        onChanged: (value) => _observation = value,
         maxLines: 4,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             border: OutlineInputBorder(),
             hintText: 'Ex.: remover ovo, alface, etc.',
             hintStyle: TextStyle(
@@ -160,7 +166,16 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
           ),
           Expanded(
             child: TextButton(
-              onPressed: () => {},
+              onPressed: () {
+                cartController.addItem(CartItem(
+                  item: itemController.currentItem!,
+                  quantity: _quantity,
+                  addons: itemController.selectedAddons,
+                  observation: _observation,
+                ));
+
+                Get.back();
+              },
               style: TextButton.styleFrom(
                 backgroundColor: BrandColors.primaryColor,
                 shape: RoundedRectangleBorder(
