@@ -3,7 +3,7 @@ import 'package:delivery_app/exports.dart';
 class ItemDetailPage extends StatefulWidget {
   final Item item;
 
-  const ItemDetailPage({required this.item});
+  const ItemDetailPage({super.key, required this.item});
 
   @override
   State<ItemDetailPage> createState() => _ItemDetailPageState();
@@ -14,14 +14,22 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
   final ItemController itemController = Get.find();
 
   int _quantity = 1;
-  String _observation = '';
+  TextEditingController _observationController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
 
-    itemController.currentItem = widget.item;
-    itemController.selectedAddons = [];
+    if (cartController.editing) {
+      itemController.currentItem = cartController.editingItem!.item;
+      itemController.selectedAddons = cartController.editingItem!.addons;
+      _quantity = cartController.editingItem!.quantity;
+      _observationController =
+          TextEditingController(text: cartController.editingItem!.observation);
+    } else {
+      itemController.currentItem = widget.item;
+      itemController.selectedAddons = [];
+    }
 
     itemController.getDetails();
   }
@@ -84,7 +92,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                     .w600s12,
                 subtitle: Text(detail.description).w400s10,
                 value: itemController.selectedAddons
-                    .any((element) => element.internalId == detail.internalId),
+                    .any((element) => element.id == detail.id),
                 onChanged: (bool? isSelected) {
                   if (isSelected!) {
                     setState(() {
@@ -94,8 +102,8 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                   }
 
                   setState(() {
-                    itemController.selectedAddons.removeWhere(
-                        (element) => element.internalId == detail.internalId);
+                    itemController.selectedAddons
+                        .removeWhere((element) => element.id == detail.id);
                   });
                 },
               );
@@ -109,7 +117,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
   Widget _observations() {
     return DetailSectionWidget(title: 'Observações', fields: [
       TextField(
-        onChanged: (value) => _observation = value,
+        controller: _observationController,
         maxLines: 4,
         decoration: const InputDecoration(
             border: OutlineInputBorder(),
@@ -171,7 +179,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                   item: itemController.currentItem!,
                   quantity: _quantity,
                   addons: itemController.selectedAddons,
-                  observation: _observation,
+                  observation: _observationController.text,
                 ));
 
                 Get.back();

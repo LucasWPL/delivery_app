@@ -37,6 +37,8 @@ export 'package:delivery_app/widgets/menu_category_widget.dart';
 export 'package:delivery_app/widgets/detail_section_widget.dart';
 export 'package:delivery_app/widgets/firebase/firebase_circular_image_widget.dart';
 export 'package:delivery_app/widgets/firebase/firebase_general_image_widget.dart';
+export 'package:delivery_app/widgets/cart/cart_item_widget.dart';
+export 'package:delivery_app/widgets/core/buttons/full_size_button.dart';
 
 // models
 export 'package:delivery_app/models/item.dart';

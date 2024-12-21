@@ -12,96 +12,60 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (cartController.items.isNotEmpty) {
-      bool isMobile = MediaQuery.of(context).size.width <= 600;
-
-      return Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal:
-                  ScreenHelper(context).widthPercentage(isMobile ? 5 : 10),
-              vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              subAppBar(),
-              SizedBox(
-                height: 1,
-                child: Container(color: BrandColors.primaryColor),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: cartController.items.length,
-                  itemBuilder: (context, index) {
-                    CartItem cartItem = cartController.items[index];
-
-                    return Column(
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset(
-                              cartItem.item.image,
-                              width: 80,
-                            ).paddingAll(20),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(cartItem.item.title).w400s14,
-                                Text(cartItem.addonsString)
-                                    .w400s10
-                                    .paddingOnly(left: 5),
-                                if (cartItem.observation.isNotEmpty)
-                                  Text('Observação: ${cartItem.observation}')
-                                      .w400s10
-                                      .paddingOnly(top: 10),
-                              ],
-                            ),
-                            const Spacer(),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Quantidade: ${cartItem.quantity}"),
-                                Text(
-                                    "Subtotal: ${cartItem.totalValue.toCurrency()}"),
-                              ],
-                            ).paddingOnly(right: 10),
-                          ],
-                        ),
-                        SizedBox(
-                            height: 1,
-                            child: Container(color: Colors.grey.shade300)),
-                      ],
-                    );
-                  },
+    return Obx(() {
+      if (cartController.items.isNotEmpty) {
+        return Scaffold(
+          body: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: ScreenHelper(context)
+                    .widthPercentage(ScreenHelper.isMobile(context) ? 5 : 10),
+                vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                subAppBar(),
+                SizedBox(
+                  height: 1,
+                  child: Container(color: BrandColors.primaryColor),
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text('Total: ${cartController.totalValue.toCurrency()}')
-                    .w500s18,
-              ).paddingSymmetric(vertical: 10),
-              TextButton(
-                onPressed: () => (),
-                style: TextButton.styleFrom(
-                  backgroundColor: BrandColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: cartController.items.length,
+                    itemBuilder: (context, index) {
+                      return CartItemWidget(
+                          cartItem: cartController.items[index]);
+                    },
                   ),
-                  minimumSize: const Size(double.infinity, 50),
                 ),
-                child: const Text(
-                  'Finalizar pedido',
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
-            ],
+                Align(
+                  alignment: Alignment.centerRight,
+                  child:
+                      Text('Total: ${cartController.totalValue.toCurrency()}')
+                          .w500s18,
+                ).paddingSymmetric(vertical: 10),
+                TextButton(
+                  onPressed: () => (),
+                  style: TextButton.styleFrom(
+                    backgroundColor: BrandColors.primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  child: const Text(
+                    'Finalizar pedido',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-      );
-    }
+        );
+      }
 
-    return emptyCart();
+      return emptyCart();
+    });
   }
 
   Row subAppBar() {

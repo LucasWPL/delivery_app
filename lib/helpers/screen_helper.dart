@@ -12,4 +12,8 @@ class ScreenHelper {
   double heightPercentage(double percentage) {
     return (MediaQuery.of(context).size.height / 100) * percentage;
   }
+
+  static bool isMobile(BuildContext context) {
+    return MediaQuery.of(context).size.width <= 600;
+  }
 }

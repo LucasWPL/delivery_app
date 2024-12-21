@@ -4,7 +4,7 @@ class CartItem {
   final Item item;
   final List<ItemAddonDetail> addons;
 
-  final int quantity;
+  int quantity;
   final String observation;
 
   CartItem(

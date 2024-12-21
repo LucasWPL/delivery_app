@@ -1,3 +1,4 @@
+import 'package:delivery_app/exports.dart';
 import 'package:flutter/material.dart';
 
 extension CustomText on Text {
@@ -9,6 +10,23 @@ extension CustomText on Text {
       style: (style == null) ? newStyle : style!.merge(newStyle),
     );
   }
+
+  // -- Cores --
+    Text get brandPrimary => getStyle(
+        const TextStyle(
+          color: BrandColors.primaryColor,
+        ),
+      );
+
+
+  // -- Tamanhos --
+
+  Text get w400s8 => getStyle(
+        const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 8,
+        ),
+      );
 
   Text get w400s10 => getStyle(
         const TextStyle(
