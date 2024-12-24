@@ -10,11 +10,13 @@ class Routes {
       name: Routes.menu,
       page: () => const MenuPage(),
       transition: Transition.topLevel,
+      transitionDuration: const Duration(milliseconds: 100),
     ),
     GetPage(
       name: Routes.cart,
       page: () => const CartPage(),
       transition: Transition.topLevel,
+      transitionDuration: const Duration(milliseconds: 100),
     ),
     GetPage(
       name: Routes.itemDetail,

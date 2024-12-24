@@ -25,6 +25,10 @@ class _CartPageState extends State<CartPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Image.asset('brand/logo.png', width: 100),
+                  ).paddingOnly(bottom: 15),
                   subAppBar(),
                   SizedBox(
                     height: 1,
@@ -76,7 +80,7 @@ class _CartPageState extends State<CartPage> {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Colors.green,
+            color: BrandColors.primaryColor,
             borderRadius: BorderRadius.circular(6),
           ),
           child: Padding(
@@ -96,7 +100,7 @@ class _CartPageState extends State<CartPage> {
     return Center(
       child: Column(
         children: [
-          Image.asset('icons/empty_cart.png', width: 200).paddingOnly(top: 150),
+          Image.asset('icons/empty_cart.png', width: 200).paddingOnly(top: 200),
           const SizedBox(height: 10),
           const Text('Seu carrinho está vazio :('),
           const SizedBox(height: 10),

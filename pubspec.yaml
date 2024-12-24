@@ -53,6 +53,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/brand/
     - assets/banners/
     - assets/menu/
     - assets/icons/

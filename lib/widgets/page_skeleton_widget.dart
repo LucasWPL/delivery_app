@@ -7,8 +7,14 @@ class PageSkeletonWidget extends StatelessWidget {
   PageSkeletonWidget({super.key, required this.child, required this.routeName});
 
   final List bottomNavigationItems = [
-    {'icon': Icons.menu, 'label': 'Cardápio', 'route': Routes.menu},
-    {'icon': Icons.shopping_cart, 'label': 'Carrinho', 'route': Routes.cart},
+    {'icon': Icons.home_filled, 'label': 'Cardápio', 'route': Routes.menu},
+    {
+      'icon': Icons.shopping_bag_outlined,
+      'label': 'Carrinho',
+      'route': Routes.cart
+    },
+    {'icon': Icons.person_3_sharp, 'label': 'Perfil', 'route': Routes.cart},
+    {'icon': Icons.chat_outlined, 'label': 'Perfil', 'route': Routes.cart},
   ];
 
   @override
@@ -16,25 +22,20 @@ class PageSkeletonWidget extends StatelessWidget {
     int currentIndex = _resolveIndex(routeName);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: BrandColors.primaryColor,
-        automaticallyImplyLeading: false,
-        title: Padding(
-          padding:
-              EdgeInsets.only(left: ScreenHelper(context).widthPercentage(9)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const FirebaseCircularImage(fileName: 'images/logo.webp'),
-              const SizedBox(width: 10),
-              const Text(
-                'Lá em casa delivery',
-                style: TextStyle(color: Colors.white),
-              ).w600s18,
-            ],
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   automaticallyImplyLeading: false,
+      //   title: Padding(
+      //     padding: EdgeInsets.symmetric(
+      //         horizontal: ScreenHelper(context)
+      //             .widthPercentage(ScreenHelper.isMobile(context) ? 0 : 9),
+      //         vertical: 20),
+      //     child: Align(
+      //       alignment: Alignment.topLeft,
+      //       child: Image.asset('brand/logo.png', width: 100),
+      //     ),
+      //   ),
+      // ),
       body: child,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -42,14 +43,41 @@ class PageSkeletonWidget extends StatelessWidget {
         selectedItemColor: BrandColors.primaryColor,
         unselectedItemColor: BrandColors.primaryColor,
         currentIndex: currentIndex,
+        showSelectedLabels: false, // Oculta todas as labels
+        showUnselectedLabels: false, // Oculta todas as labels
+        selectedFontSize: 8,
+        unselectedFontSize: 0,
+        iconSize: 26,
         onTap: (index) {
-          currentIndex = index;
           Get.toNamed(bottomNavigationItems[index]['route']);
         },
         items: bottomNavigationItems.map((item) {
+          final isSelected =
+              bottomNavigationItems.indexOf(item) == currentIndex;
+
           return BottomNavigationBarItem(
-            icon: Icon(item['icon']),
-            label: item['label'],
+            icon: isSelected
+                ? Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: BrandColors.primaryColor, // Fundo do círculo
+                    ),
+                    child: SizedBox(
+                      width: 50, // Tamanho fixo do círculo
+                      height: 50,
+                      child: Icon(
+                        item['icon'],
+                        color: BrandColors
+                            .generalBackgroundColor, // Cor do ícone selecionado
+                      ),
+                    ),
+                  )
+                : Icon(
+                    item['icon'],
+                    color: BrandColors
+                        .primaryColor, // Cor do ícone não selecionado
+                  ),
+            label: 'Test', // Não exibe labels
           );
         }).toList(),
       ),
