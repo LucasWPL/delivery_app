@@ -14,7 +14,7 @@ class CategoryController extends GetxController {
       var fetchedCategories = await categoryRepository.fetchCategories();
       categories.value = fetchedCategories;
     } catch (e) {
-      print('Erro ao carregar categorias: $e');
+      // print('Erro ao carregar categorias: $e');
     } finally {
       isLoading.value = false;
     }

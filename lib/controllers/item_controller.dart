@@ -17,7 +17,7 @@ class ItemController extends GetxController {
       var response = await itemRepository.getDetails();
       itemDetail.value = ItemDetail.fromJson(response);
     } catch (e) {
-      print(e);
+      // print(e);
     } finally {
       isLoading.value = false;
     }

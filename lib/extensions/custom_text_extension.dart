@@ -1,5 +1,4 @@
 import 'package:delivery_app/exports.dart';
-import 'package:flutter/material.dart';
 
 extension CustomText on Text {
   Text getStyle(TextStyle newStyle) {

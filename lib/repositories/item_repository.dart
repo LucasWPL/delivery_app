@@ -8,7 +8,7 @@ class ItemRepository {
   final String baseUrl = 'https://sua-api.com/categories';
 
   Future<dynamic> getDetails() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
     return {
       "addons": [
