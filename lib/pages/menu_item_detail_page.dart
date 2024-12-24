@@ -106,6 +106,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                         .removeWhere((element) => element.id == detail.id);
                   });
                 },
+                activeColor: BrandColors.primaryColor,
               );
             })
           ]);
@@ -182,7 +183,8 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                   observation: _observationController.text,
                 ));
 
-                Get.back();
+                Get.toNamed(Routes.menu);
+                ToastHelper.success(context, 'Produto adicionado ao carrinho');
               },
               style: TextButton.styleFrom(
                 backgroundColor: BrandColors.primaryColor,
@@ -216,7 +218,8 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
           Text(
             widget.item.title,
             softWrap: true,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           Text(
             widget.item.price.toCurrency(),

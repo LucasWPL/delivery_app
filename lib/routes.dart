@@ -1,7 +1,7 @@
 import 'package:delivery_app/exports.dart';
 
 class Routes {
-  static const menu = '/menu';
+  static const menu = '/';
   static const cart = '/cart';
   static const itemDetail = '/item/detail';
 

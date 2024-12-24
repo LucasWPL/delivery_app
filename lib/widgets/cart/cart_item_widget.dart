@@ -164,14 +164,14 @@ class _CartItemWidgetState extends State<CartItemWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset('icons/remove_cart_item.png', width: 200),
+                Image.asset('icons/remove_cart_item.png', width: 150),
                 const SizedBox(height: 20),
-                const Text('Remover item do carrinho?').w600s18,
+                const Text('Remover item do carrinho?').w600s16,
                 const SizedBox(height: 20),
                 Text(
                   'Você tem certeza que deseja remover ${widget.cartItem.item.title} do carrinho?',
                   textAlign: TextAlign.center,
-                ).w400s14,
+                ).w400s12,
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -187,6 +187,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       onPressed: () {
                         cartController.removeItem(widget.cartItem);
                         Navigator.pop(context);
+                        ToastHelper.success(
+                            context, 'Item removido do carrinho');
                       },
                       description: 'Remover',
                       buttonType: ButtonType.secondary,
