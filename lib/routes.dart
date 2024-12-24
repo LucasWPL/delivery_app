@@ -1,13 +1,11 @@
 import 'package:delivery_app/exports.dart';
 
 class Routes {
-  static const home = '/';
   static const menu = '/menu';
   static const cart = '/cart';
   static const itemDetail = '/item/detail';
 
   static List<GetPage> dependencies = [
-    GetPage(name: Routes.home, page: () => const HomePage()),
     GetPage(name: Routes.menu, page: () => const MenuPage()),
     GetPage(name: Routes.cart, page: () => const CartPage()),
     GetPage(

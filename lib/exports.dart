@@ -18,7 +18,6 @@ export 'package:delivery_app/helpers/firebase_helper.dart';
 export 'package:delivery_app/bindings/general_binding.dart';
 
 // pages
-export 'package:delivery_app/pages/home_page.dart';
 export 'package:delivery_app/pages/cart_page.dart';
 export 'package:delivery_app/pages/menu_page.dart';
 export 'package:delivery_app/pages/menu_item_detail_page.dart';
@@ -33,12 +32,13 @@ export 'package:delivery_app/repositories/category_repository.dart';
 export 'package:delivery_app/repositories/item_repository.dart';
 
 // widgets
-export 'package:delivery_app/widgets/menu_category_widget.dart';
-export 'package:delivery_app/widgets/detail_section_widget.dart';
+export 'package:delivery_app/widgets/menu/menu_category_widget.dart';
+export 'package:delivery_app/widgets/menu/detail_section_widget.dart';
 export 'package:delivery_app/widgets/firebase/firebase_circular_image_widget.dart';
 export 'package:delivery_app/widgets/firebase/firebase_general_image_widget.dart';
 export 'package:delivery_app/widgets/cart/cart_item_widget.dart';
 export 'package:delivery_app/widgets/core/buttons/full_size_button.dart';
+export 'package:delivery_app/widgets/page_skeleton_widget.dart';
 
 // models
 export 'package:delivery_app/models/item.dart';

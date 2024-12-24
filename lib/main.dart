@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'LemonMilk',
       ),
       initialBinding: GeneralBinding(),
-      home: const HomePage(),
+      home: const MenuPage(),
       getPages: Routes.dependencies,
     );
   }

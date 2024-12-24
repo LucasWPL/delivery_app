@@ -12,60 +12,63 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (cartController.items.isNotEmpty) {
-        return Scaffold(
-          body: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: ScreenHelper(context)
-                    .widthPercentage(ScreenHelper.isMobile(context) ? 5 : 10),
-                vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                subAppBar(),
-                SizedBox(
-                  height: 1,
-                  child: Container(color: BrandColors.primaryColor),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: cartController.items.length,
-                    itemBuilder: (context, index) {
-                      return CartItemWidget(
-                          cartItem: cartController.items[index]);
-                    },
+    return PageSkeletonWidget(
+      routeName: Routes.cart,
+      child: Obx(() {
+        if (cartController.items.isNotEmpty) {
+          return Scaffold(
+            body: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: ScreenHelper(context)
+                      .widthPercentage(ScreenHelper.isMobile(context) ? 5 : 10),
+                  vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  subAppBar(),
+                  SizedBox(
+                    height: 1,
+                    child: Container(color: BrandColors.primaryColor),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child:
-                      Text('Total: ${cartController.totalValue.toCurrency()}')
-                          .w500s18,
-                ).paddingSymmetric(vertical: 10),
-                TextButton(
-                  onPressed: () => (),
-                  style: TextButton.styleFrom(
-                    backgroundColor: BrandColors.primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: cartController.items.length,
+                      itemBuilder: (context, index) {
+                        return CartItemWidget(
+                            cartItem: cartController.items[index]);
+                      },
                     ),
-                    minimumSize: const Size(double.infinity, 50),
                   ),
-                  child: const Text(
-                    'Finalizar pedido',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                )
-              ],
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child:
+                        Text('Total: ${cartController.totalValue.toCurrency()}')
+                            .w500s18,
+                  ).paddingSymmetric(vertical: 10),
+                  TextButton(
+                    onPressed: () => (),
+                    style: TextButton.styleFrom(
+                      backgroundColor: BrandColors.primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      minimumSize: const Size(double.infinity, 50),
+                    ),
+                    child: const Text(
+                      'Finalizar pedido',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        );
-      }
+          );
+        }
 
-      return emptyCart();
-    });
+        return emptyCart();
+      }),
+    );
   }
 
   Row subAppBar() {
@@ -98,7 +101,7 @@ class _CartPageState extends State<CartPage> {
           const Text('Seu carrinho está vazio :('),
           const SizedBox(height: 10),
           TextButton(
-            onPressed: () => Get.off(const HomePage()),
+            onPressed: () => Get.toNamed(Routes.menu),
             style: TextButton.styleFrom(
               backgroundColor: BrandColors.primaryColor,
               shape: RoundedRectangleBorder(
