@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       initialBinding: GeneralBinding(),
       home: const HomePage(),
+      getPages: Routes.dependencies,
     );
   }
 }

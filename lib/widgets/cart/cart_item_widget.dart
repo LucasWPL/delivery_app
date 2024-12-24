@@ -78,7 +78,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
         TextButton(
           onPressed: () {
             cartController.editItem(widget.cartItem);
-            Get.to(() => ItemDetailPage(item: widget.cartItem.item));
+            Get.toNamed(Routes.itemDetail, arguments: widget.cartItem.item);
           },
           style: TextButton.styleFrom(
             padding: const EdgeInsets.only(left: 10, top: 15),

@@ -53,3 +53,6 @@ export 'package:delivery_app/extensions/custom_text_extension.dart';
 
 // tokens
 export 'package:delivery_app/tokens/brand_colors.dart';
+
+// routes
+export 'package:delivery_app/routes.dart';

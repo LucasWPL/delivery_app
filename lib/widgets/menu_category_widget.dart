@@ -28,7 +28,7 @@ class MenuCategoryWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
                 onTap: () async =>
-                    Get.to(() => ItemDetailPage(item: items[index])),
+                    Get.toNamed(Routes.itemDetail, arguments: items[index]),
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
